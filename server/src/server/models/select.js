@@ -9,17 +9,17 @@ module.exports = (sequelize, DataTypes) => {
     {
       type: {
         primaryKey: true,
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       describe: {
         primaryKey: true,
-        type: DataTypes.STRING,
-      },
+        type: DataTypes.STRING
+      }
     },
     {
       sequelize,
       modelName: 'Select',
-      timestamps: false,
+      timestamps: false
     }
   );
   return Select;

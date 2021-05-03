@@ -9,8 +9,8 @@ module.exports = {
           type: Sequelize.INTEGER,
           references: {
             model: 'Offers',
-            key: 'id',
-          },
+            key: 'id'
+          }
         },
         userId: {
           type: Sequelize.INTEGER,
@@ -18,14 +18,14 @@ module.exports = {
           primaryKey: true,
           references: {
             model: 'Users',
-            key: 'id',
-          },
+            key: 'id'
+          }
         },
         mark: {
           type: Sequelize.FLOAT,
           allowNull: false,
-          defaultValue: 0,
-        },
+          defaultValue: 0
+        }
       })
       .then(() =>
         queryInterface.addConstraint('Ratings', {
@@ -33,13 +33,13 @@ module.exports = {
           fields: ['mark'],
           where: {
             mark: {
-              [Sequelize.Op.and]: [{ [Sequelize.Op.gte]: 0 }, { [Sequelize.Op.lte]: 5 }],
-            },
-          },
+              [Sequelize.Op.and]: [{ [Sequelize.Op.gte]: 0 }, { [Sequelize.Op.lte]: 5 }]
+            }
+          }
         })
       );
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Ratings');
-  },
+  }
 };

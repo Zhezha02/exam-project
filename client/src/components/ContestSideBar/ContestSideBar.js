@@ -71,7 +71,7 @@ const ContestSideBar = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    return state.userStore;
+    return state.auth;
 };
 
 

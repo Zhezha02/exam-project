@@ -17,6 +17,7 @@ export default function (state = initialState, action) {
             }
         }
         case ACTION.GET_DATA_FOR_CONTEST_ACTION_SUCCESS: {
+            console.log('reducer', action.data)
             return {
                 isFetching: false,
                 data: action.data,

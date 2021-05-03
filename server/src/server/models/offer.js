@@ -7,15 +7,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       Offer.belongsTo(models.User, {
         foreignKey: 'userId',
-        sourceKey: 'id',
+        sourceKey: 'id'
       });
       Offer.belongsTo(models.Contest, {
         foreignKey: 'contestId',
-        sourceKey: 'id',
+        sourceKey: 'id'
       });
       Offer.hasOne(models.Rating, {
         foreignKey: 'offerId',
-        targetKey: 'id',
+        targetKey: 'id'
       });
     }
   }
@@ -23,30 +23,30 @@ module.exports = (sequelize, DataTypes) => {
     {
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       contestId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       text: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       fileName: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       originalFileName: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       status: {
         type: DataTypes.ENUM(...Object.values(OFFER_STATUSES)),
         defaultValue: OFFER_STATUSES.PENDING,
-        allowNull: false,
-      },
+        allowNull: false
+      }
     },
     {
       sequelize,
-      modelName: 'Offer',
+      modelName: 'Offer'
     }
   );
   return Offer;

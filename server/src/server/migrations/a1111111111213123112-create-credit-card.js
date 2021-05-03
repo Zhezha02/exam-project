@@ -6,25 +6,25 @@ module.exports = {
         cardNumber: {
           type: Sequelize.STRING(16),
           allowNull: false,
-          primaryKey: true,
+          primaryKey: true
         },
         name: {
           type: Sequelize.STRING,
-          allowNull: false,
+          allowNull: false
         },
         expiry: {
           type: Sequelize.STRING(5),
-          allowNull: false,
+          allowNull: false
         },
         cvc: {
           type: Sequelize.STRING(3),
-          allowNull: false,
+          allowNull: false
         },
         balance: {
           type: Sequelize.DECIMAL,
           allowNull: false,
-          defaultValue: 0,
-        },
+          defaultValue: 0
+        }
       })
       .then(() =>
         queryInterface.addConstraint('CreditCards', {
@@ -32,13 +32,13 @@ module.exports = {
           fields: ['balance'],
           where: {
             balance: {
-              [Sequelize.Op.gte]: 0,
-            },
-          },
+              [Sequelize.Op.gte]: 0
+            }
+          }
         })
       );
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('CreditCards');
-  },
+  }
 };

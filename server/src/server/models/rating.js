@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       Rating.belongsTo(models.User, {
         foreignKey: 'userId',
-        targetKey: 'id',
+        targetKey: 'id'
       });
       Rating.belongsTo(models.Offer, {
         foreignKey: 'offerId',
-        targetKey: 'id',
+        targetKey: 'id'
       });
     }
   }
@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       offerId: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
+        primaryKey: true
       },
       userId: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
+        primaryKey: true
       },
       mark: {
         type: DataTypes.FLOAT,
@@ -30,14 +30,14 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
         validate: {
           min: 0,
-          max: 5,
-        },
-      },
+          max: 5
+        }
+      }
     },
     {
       sequelize,
       modelName: 'Rating',
-      timestamps: false,
+      timestamps: false
     }
   );
   return Rating;

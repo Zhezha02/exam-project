@@ -8,7 +8,7 @@ import Spinner from '../Spinner/Spinner';
 const OnlyNotAuthorizedUserHoc = (Component) => {
 
     const mapStateToProps = (state) => {
-        return state.userStore;
+        return state.auth;
     };
 
     const mapDispatchToProps = (dispatch) => {

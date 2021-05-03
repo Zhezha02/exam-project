@@ -1,13 +1,14 @@
 const authRouter = require('express').Router();
 const AuthController = require('../controllers/authController');
-/* 
-  {
-      accessToken: '12q.aw2.reg', // 20 min. n count
-      refreshToken: '123.sdg.654' // 20 days. 1 count 
-  }
-*/
-authRouter.post('/sign-in', AuthController.signIn);
-// authRouter.post('/sign-up', AuthController.signUp);
-// authRouter.post('/refresh', AuthController.refresh);
+const { checkRefreshToken } = require('../middlewares/tokenMw');
+const Validators = require('../middlewares/validators');
+
+authRouter.post('/sign-in', Validators.validateLogin, AuthController.signIn);
+authRouter.post(
+  '/sign-up',
+  Validators.validateRegistrationData,
+  AuthController.signUp
+);
+authRouter.post('/refresh', checkRefreshToken, AuthController.refresh);
 
 module.exports = authRouter;

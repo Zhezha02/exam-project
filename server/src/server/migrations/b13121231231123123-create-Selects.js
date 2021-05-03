@@ -4,15 +4,15 @@ module.exports = {
     return queryInterface.createTable('Selects', {
       type: {
         primaryKey: true,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       describe: {
         primaryKey: true,
-        type: Sequelize.STRING,
-      },
+        type: Sequelize.STRING
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Selects');
-  },
+  }
 };

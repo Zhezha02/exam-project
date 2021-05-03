@@ -61,7 +61,7 @@ const UserInfo = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    const {data} = state.userStore;
+    const {data} = state.auth;
     const {isEdit} = state.userProfile;
     return {data, isEdit};
 };

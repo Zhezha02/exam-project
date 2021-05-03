@@ -9,49 +9,49 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Users',
-          key: 'id',
-        },
+          key: 'id'
+        }
       },
       contestId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Contests',
-          key: 'id',
-        },
+          key: 'id'
+        }
       },
       text: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       fileName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       originalFileName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       status: {
         type: Sequelize.ENUM(...Object.values(OFFER_STATUSES)),
         defaultValue: OFFER_STATUSES.PENDING,
-        allowNull: false,
+        allowNull: false
       },
       createdAt: {
         type: Sequelize.DATE,
-        defaultValue: new Date(),
+        defaultValue: new Date()
       },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: new Date(),
-      },
+        defaultValue: new Date()
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Offers');
-  },
+  }
 };

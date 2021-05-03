@@ -9,77 +9,77 @@ module.exports = {
           allowNull: false,
           autoIncrement: true,
           primaryKey: true,
-          type: Sequelize.INTEGER,
+          type: Sequelize.INTEGER
         },
         userId: {
           allowNull: false,
           type: Sequelize.INTEGER,
           references: {
             model: 'Users',
-            key: 'id',
-          },
+            key: 'id'
+          }
         },
         contestType: {
           allowNull: false,
-          type: Sequelize.ENUM(...Object.values(CONTEST_TYPES)),
+          type: Sequelize.ENUM(...Object.values(CONTEST_TYPES))
         },
         fileName: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         originalFileName: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         title: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         typeOfName: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         industry: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         focusOfWork: {
-          type: Sequelize.TEXT,
+          type: Sequelize.TEXT
         },
         targetCustomer: {
-          type: Sequelize.TEXT,
+          type: Sequelize.TEXT
         },
         styleName: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         nameVenture: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         typeOfTagline: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         status: {
           type: Sequelize.ENUM(...Object.values(CONTESTS_STATUSES)),
-          allowNull: false,
+          allowNull: false
         },
         brandStyle: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         prize: {
           allowNull: false,
-          type: Sequelize.DECIMAL,
+          type: Sequelize.DECIMAL
         },
         priority: {
           allowNull: false,
-          type: Sequelize.INTEGER,
+          type: Sequelize.INTEGER
         },
         orderId: {
           allowNull: false,
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         createdAt: {
           type: Sequelize.DATE,
-          defaultValue: new Date(),
+          defaultValue: new Date()
         },
         updatedAt: {
           type: Sequelize.DATE,
-          defaultValue: new Date(),
-        },
+          defaultValue: new Date()
+        }
       })
       .then(() =>
         queryInterface.addConstraint('Contests', {
@@ -87,13 +87,13 @@ module.exports = {
           fields: ['prize'],
           where: {
             prize: {
-              [Sequelize.Op.gte]: 0,
-            },
-          },
+              [Sequelize.Op.gte]: 0
+            }
+          }
         })
       );
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Contests');
-  },
+  }
 };

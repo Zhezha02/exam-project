@@ -8,7 +8,7 @@ module.exports.updateUser = async (data, userId, transaction) => {
   const [updatedCount, [updatedUser]] = await User.update(data, {
     where: { id: userId },
     returning: true,
-    transaction,
+    transaction
   });
   if (updatedCount !== 1) {
     throw new ServerError('cannot update user');

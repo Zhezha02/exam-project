@@ -5,7 +5,7 @@ module.exports.createWhereForAllContests = (
   typeIndex, contestId, industry, awardSort) => {
   const option = {
     where: {},
-    order: [],
+    order: []
   };
   if (typeIndex) {
     Object.assign(option.where, { contestType: getPredicateTypes(typeIndex) });
@@ -21,18 +21,18 @@ module.exports.createWhereForAllContests = (
   }
   Object.assign(option.where, {
     status: {
-      [ bd.Sequelize.Op.or ]: [
+      [bd.Sequelize.Op.or]: [
         CONSTANTS.CONTESTS_STATUSES.FINISHED,
-        CONSTANTS.CONTESTS_STATUSES.ACTIVE,
-      ],
-    },
+        CONSTANTS.CONTESTS_STATUSES.ACTIVE
+      ]
+    }
   });
   option.order.push(['id', 'desc']);
   return option;
 };
 
 function getPredicateTypes (index) {
-  return { [ bd.Sequelize.Op.or ]: [types[ index ].split(',')] };
+  return { [bd.Sequelize.Op.or]: [types[index].split(',')] };
 }
 
 const types = [

@@ -16,18 +16,18 @@ module.exports = (sequelize, DataTypes) => {
     static associate ({ Offer, Contest, Rating, RefreshToken }) {
       User.hasMany(Offer, {
         foreignKey: 'userId',
-        targetKey: 'id',
+        targetKey: 'id'
       });
       User.hasMany(Contest, {
         foreignKey: 'userId',
-        targetKey: 'id',
+        targetKey: 'id'
       });
       User.hasMany(Rating, {
         foreignKey: 'userId',
-        targetKey: 'id',
+        targetKey: 'id'
       });
       User.hasMany(RefreshToken, {
-        foreignKey: 'userId',
+        foreignKey: 'userId'
       });
     }
 
@@ -39,54 +39,54 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       displayName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       password: {
         field: 'passwordHash',
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
         /* set (password) {
-          
-          }); 
+
+          });
         } */
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       avatar: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       role: {
         type: DataTypes.ENUM(...Object.values(ROLES)),
-        allowNull: false,
+        allowNull: false
       },
       balance: {
         type: DataTypes.DECIMAL,
         allowNull: false,
         defaultValue: 0,
         validate: {
-          min: 0,
-        },
+          min: 0
+        }
       },
       rating: {
         type: DataTypes.FLOAT,
         allowNull: false,
-        defaultValue: 0,
-      },
+        defaultValue: 0
+      }
     },
     {
       sequelize,
-      modelName: 'User',
+      modelName: 'User'
     }
   );
 

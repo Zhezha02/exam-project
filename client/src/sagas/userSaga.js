@@ -5,7 +5,7 @@ import {controller} from '../api/ws/socketController';
 
 
 
-export  function* privateSaga(action){
+/* export  function* privateSaga(action){
     yield put({type: ACTION.GET_USER_REQUEST});
     try{
         const {data}=yield  restController.getUser();
@@ -30,7 +30,7 @@ export function* notAuthorizeSaga(action){
         yield put({type: ACTION.GET_USER_ERROR,error: e});
     }
 
-}
+} */
 
 
 export  function* updateUserData(action){
@@ -43,7 +43,7 @@ export  function* updateUserData(action){
         yield  put({type: ACTION.UPDATE_USER_DATA_ERROR, error: e.response});
     }
 }
-
+/* 
 export function* headerRequest(){
     yield put({type: ACTION.GET_USER_REQUEST});
     try{
@@ -54,4 +54,4 @@ export function* headerRequest(){
     catch (e) {
         yield put({type: ACTION.GET_USER_ERROR, error: e.response});
     }
-}
+} */
