@@ -1,20 +1,23 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Spinner from '../Spinner/Spinner';
 
 const PrivateRoute = ({ roles, ...rest }) => {
   const { user, isFetching, error } = useSelector(state => state.auth)
 
-  if (user) {
-    if (roles.includes(user.role)) {
-      return <Route {...rest} />
-    }
-    return <Redirect to='/' />
+  if (isFetching) {
+    return <Spinner />
   }
-  
-  if (!roles || !roles.length) {
+
+  if (user) {
+    if (roles && !roles.includes(user.role)) {
+      return <Redirect to='/' />
+    }
     return <Route {...rest} />
   }
+
+  return null // TODO: fix null render 
 }
 
 export default PrivateRoute

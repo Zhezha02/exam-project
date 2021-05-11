@@ -19,6 +19,9 @@ export default function (state = initialState, action) {
                 contests: {}
             }
         }
+        case ACTION.CLEAR_STORE:{
+            return {...initialState}
+        }
         default:
             return state;
     }

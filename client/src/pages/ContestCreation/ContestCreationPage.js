@@ -1,11 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import { useHistory } from 'react-router';
 import styles from './ContestCreationPage.module.sass';
 import {saveContestToStore, clearDataForContest} from '../../actions/actionCreator';
 import NextButton from '../../components/NextButton/NextButton';
 import ContestForm from '../../components/ContestForm/ContestForm';
-import Schem from '../../validators/validationSchems';
-import CONSTANTS from '../../constants';
 import BackButton from '../../components/BackButton/BackButton';
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import Footer from '../../components/Footer/Footer';
@@ -13,13 +12,14 @@ import Header from '../../components/Header/Header';
 
 
 const ContestCreationPage = (props) => {
+    const history = useHistory()
 
     const submitDataContest = (values) => {
         props.saveContest({type: props.contestType, info: values});
-        props.history.push(props.bundleStore.bundle[props.contestType] === 'payment' ? '/payment' : props.bundleStore.bundle[props.contestType] + 'Contest');
+        history.push(props.bundleStore.bundle[props.contestType] === 'payment' ? '/payment' : props.bundleStore.bundle[props.contestType] + 'Contest');
     };
 
-    !props.bundleStore.bundle && props.history.replace('/startContest');
+    !props.bundleStore.bundle && history.replace('/startContest');
     const contestData = props.contestStore.contests[props.contestType] ? props.contestStore.contests[props.contestType] : {contestType: props.contestType};
     return (
         <div>

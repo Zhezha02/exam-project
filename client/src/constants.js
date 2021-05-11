@@ -17,6 +17,7 @@ export default {
   STATIC_IMAGES_PATH: '/staticImages/',
   ANONYM_IMAGE_PATH: '/staticImages/anonym.png',
   BASE_URL: `http://${ hostName }:${ serverPort }/api/`,
+  WS_BASE_URL: `ws://${ hostName }:${ serverPort }`,
   ACCESS_TOKEN: 'accessToken',
   REFRESH_TOKEN: 'refreshToken',
   publicURL: env === 'production'

@@ -18,8 +18,7 @@ const UserInfo = (props) => {
     };
 
 
-    const {isEdit, changeEditMode, data} = props;
-    const {avatar, firstName, lastName, displayName, email, role, balance} = data;
+    const {isEdit, changeEditMode, user:{avatar, firstName, lastName, displayName, email, role, balance}} = props;
     return (
         <div className={styles.mainContainer}>
             {isEdit ? <UpdateUserInfoForm onSubmit={updateUserData}/>

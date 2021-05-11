@@ -1,82 +1,64 @@
-import React from "react";
-import style from "./SlideBar.module.sass";
+import React from 'react'
 import Flickity from 'react-flickity-component'
-import carouselConstants from '../../carouselConstants';
-import './flickity.css';
+import style from './SlideBar.module.sass'
+import carouselConstants from '../../carouselConstants'
+import './flickity.css'
+import { ExampleSlide, FeedbackSlide, MainSlide } from './sliderTypes'
 
+const options = {
+  draggable: true,
+  wrapAround: true,
+  pageDots: false,
+  prevNextButtons: true,
+  autoPlay: true,
+  groupCells: true,
+  lazyLoad: true
+}
+
+const styles = {
+  [carouselConstants.MAIN_SLIDER]: style.mainCarousel,
+  [carouselConstants.EXAMPLE_SLIDER]: style.exampleCarousel,
+  [carouselConstants.FEEDBACK_SLIDER]: style.feedbackCarousel
+}
+
+const slideTypes = {
+  [carouselConstants.MAIN_SLIDER]: props => (
+    <MainSlide
+      className={style['carousel-cell']}
+      key={props.index}
+      src={props.src}
+    />
+  ),
+  [carouselConstants.EXAMPLE_SLIDER]: props => (
+    <ExampleSlide
+      className={style['example-cell']}
+      key={props.index}
+      src={props.src}
+      data={carouselConstants.EXAMPLE_SLIDER_TEXT[props.index]}
+    />
+  ),
+  [carouselConstants.FEEDBACK_SLIDER]: props => (
+    <FeedbackSlide
+      className={style['feedback-cell']}
+      key={props.index}
+      src={props.src}
+      data={carouselConstants.FEEDBACK_SLIDER_TEXT[props.index]}
+    />
+  )
+}
 
 const SliderBar = props => {
-    const options = {
-        draggable: true,
-        wrapAround: true,
-        pageDots: false,
-        prevNextButtons: true,
-        autoPlay: true,
-        groupCells: true,
-        lazyLoad: true
-    };
+  const { carouselType, images } = props
+  const className = styles[carouselType]
+  const renderSlide = slideTypes[carouselType]
 
-    const getStyleName = () => {
-        const {carouselType} = props;
-        switch (carouselType) {
-            case carouselConstants.MAIN_SLIDER:
-                return style.mainCarousel;
-            case carouselConstants.EXAMPLE_SLIDER:
-                return style.exampleCarousel;
-            case carouselConstants.FEEDBACK_SLIDER:
-                return style.feedbackCarousel;
-        }
-    };
+  return (
+    <Flickity className={className} elementType={'div'} options={options}>
+      {Object.entries(images).map(([_, value], index) =>
+        renderSlide({ src: value, index })
+      )}
+    </Flickity>
+  )
+}
 
-
-    const renderSlides = () => {
-        const {carouselType} = props;
-        switch (carouselType) {
-            case carouselConstants.MAIN_SLIDER: {
-                return Object.keys(props.images).map((key, index) => {
-                    return (
-                        <img src={props.images[key]}
-                             alt={"slide"}
-                             key={index}
-                             className={style["carousel-cell"]}
-                        />
-                    )
-                })
-            }
-            case carouselConstants.EXAMPLE_SLIDER: {
-                return Object.keys(props.images).map((key, index) => {
-                    return (
-                        <div className={style["example-cell"]} key={index}>
-                            <img src={props.images[key]} alt={"slide"}/>
-                            <p>{carouselConstants.EXAMPLE_SLIDER_TEXT[index]}</p>
-                        </div>
-
-                    )
-                })
-            }
-            case carouselConstants.FEEDBACK_SLIDER: {
-                return Object.keys(props.images).map((key, index) => {
-                    return (
-                        <div className={style["feedback-cell"]} key={index}>
-                            <img src={props.images[key]} alt={"slide"}/>
-                            <p>{carouselConstants.FEEDBACK_SLIDER_TEXT[index].feedback}</p>
-                            <span>{carouselConstants.FEEDBACK_SLIDER_TEXT[index].name}</span>
-                        </div>
-                    )
-                })
-            }
-        }
-    };
-    return (
-        <Flickity className={getStyleName()}
-                  elementType={'div'}
-                  options={options}>
-            {
-                renderSlides()
-            }
-        </Flickity>
-    );
-
-};
-
-export default SliderBar;
+export default SliderBar

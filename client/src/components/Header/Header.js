@@ -154,7 +154,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUser: () => dispatch(headerRequest()),
     clearUserStore: () => dispatch(clearUserStore()),
   };
 };

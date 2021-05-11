@@ -40,6 +40,7 @@ class AuthApi {
     if (this.#_accessToken) {
       config.headers['Authorization'] = `Bearer ${this.#_accessToken}`
     }
+    
     return config
   }
 
@@ -52,6 +53,7 @@ class AuthApi {
     const {
       config: { url }
     } = response
+
     if (url.includes(this._url)) {
       const {
         data: {
@@ -60,14 +62,15 @@ class AuthApi {
       } = response
       this._saveTokenPair(tokenPair)
     }
+
     return response
   }
 
   responseInterceptorError = async error => {
-    const { config } = error
-    console.dir(error)
+    const { config, response } = error
     const refreshToken = window.localStorage.getItem(CONSTANTS.REFRESH_TOKEN)
-    if (error.response.status === 419 && refreshToken) {
+
+    if (response.status === 419 && refreshToken) {
       const {
         data: {
           data: { tokenPair }
@@ -79,6 +82,11 @@ class AuthApi {
       config.headers['Authorization'] = `Bearer ${tokenPair.accessToken}`
       return this.#_client(config)
     }
+
+    if (response.status === 401 && refreshToken) {
+      this.logout()
+    }
+
     return Promise.reject(error)
   }
 }
