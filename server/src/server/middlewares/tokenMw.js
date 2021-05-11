@@ -7,6 +7,7 @@ module.exports.checkRefreshToken = async (req, res, next) => {
       body: { refreshToken },
     } = req;
     req.tokenData = await JwtService.verifyRefreshToken(refreshToken);
+    console.log(refreshToken)
     next();
   } catch (error) {
     next(error);

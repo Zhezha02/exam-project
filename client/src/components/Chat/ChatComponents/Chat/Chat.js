@@ -15,18 +15,18 @@ import ChatError from '../../../ChatError/ChatError';
 
 class Chat extends React.Component {
     componentDidMount() {
-        chatController.subscribeChat(this.props.auth.data.id);
+        chatController.subscribeChat(this.props.auth.user.id);
         this.props.getPreviewChat();
     }
 
     componentWillUnmount() {
-        chatController.unsubscribeChat(this.props.auth.data.id);
+        chatController.unsubscribeChat(this.props.auth.user.id);
     }
 
     renderDialogList = () => {
         const {setChatPreviewMode} = this.props;
         const {chatMode, isShowChatsInCatalog} = this.props.chatStore;
-        const {id} = this.props.auth.data;
+        const {id} = this.props.auth.user;
         const {NORMAL_PREVIEW_CHAT_MODE, FAVORITE_PREVIEW_CHAT_MODE, BLOCKED_PREVIEW_CHAT_MODE, CATALOG_PREVIEW_CHAT_MODE} = CONSTANTS;
         return (
             <div>
@@ -51,7 +51,7 @@ class Chat extends React.Component {
 
     render() {
         const {isExpanded, isShow, isShowCatalogCreation,error} = this.props.chatStore;
-        const {id} = this.props.auth.data;
+        const {id} = this.props.auth.user;
         const {changeShow,getPreviewChat} = this.props;
         return (
             <div className={classNames(styles.chatContainer, {[styles.showChat]: isShow})}>

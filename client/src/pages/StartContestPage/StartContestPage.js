@@ -12,7 +12,7 @@ import Header from "../../components/Header/Header";
 
 const StartContestPage = (props) => {
 
-    if (props.auth.data.role !== CONSTANTS.CUSTOMER) {
+    if (props.auth.user.role !== CONSTANTS.CUSTOMER) {
         props.history.replace('/');
     }
 

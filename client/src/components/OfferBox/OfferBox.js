@@ -106,7 +106,7 @@ const OfferBox = (props) => {
                 <div className={styles.userInfo}>
                     <div className={styles.creativeInfoContainer}>
                         <img
-                            src={avatar === 'anon.png' ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${avatar}`}
+                            src={avatar ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${avatar}`}
                             alt='user'/>
                         <div className={styles.nameAndEmail}>
                             <span>{firstName + ' ' + lastName}</span>
@@ -166,7 +166,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     const {changeMarkError, isShowModal} = state.contestByIdStore;
-    const {id, role} = state.auth.data;
+    const {id, role} = state.auth.user;
     const {messagesPreview} = state.chatStore;
     return {changeMarkError, id, role, messagesPreview, isShowModal};
 };

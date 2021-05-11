@@ -12,8 +12,8 @@ const ChatContainer = props => {
 };
 
 const mapStateToProps = (state) => {
-    const {data} = state.auth;
-    return {data};
+    const {user} = state.auth;
+    return {user};
 };
 
 export default connect(mapStateToProps, null)(ChatContainer);

@@ -5,7 +5,9 @@
     "database": "todo-dev",
     "host": "db-dev",
     "dialect": "postgres",
-    "operatorsAliases": "Op"
+    "operatorsAliases": "Op",
+    "seedersStorage": "sequelize",
+    "migrationStorage": "sequelize"
   },
   "test": {},
   "production": {}

@@ -7,14 +7,7 @@ import {clearUserStore, headerRequest} from '../../actions/actionCreator';
 
 
 class Header extends React.Component{
-  componentDidMount () {
-    if ( !this.props.data) {
-      this.props.getUser();
-    }
-  }
-
-  logOut = () => {
-    localStorage.clear();
+   logOut = () => {
     this.props.clearUserStore();
     this.props.history.replace('/login');
   };
@@ -23,14 +16,14 @@ class Header extends React.Component{
         this.props.history.push('/startContest');
     };
     renderLoginButtons = () => {
-        if (this.props.data) {
+        if (this.props.user) {
             return (
                 <>
                     <div className={styles.userInfo}>
                         <img
-                            src={this.props.data.avatar === 'anon.png' ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${this.props.data.avatar}`}
+                            src={this.props.user.avatar ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${this.props.user.avatar}`}
                             alt='user'/>
-                        <span>{`Hi, ${this.props.data.displayName}`}</span>
+                        <span>{`Hi, ${this.props.user.displayName}`}</span>
                         <img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`} alt='menu'/>
                         <ul>
                             <li><Link to='/dashboard'
@@ -147,7 +140,7 @@ class Header extends React.Component{
                                 </li>
                             </ul>
                         </div>
-                        {this.props.data && this.props.data.role !== CONSTANTS.CREATOR &&
+                        {this.props.user && this.props.user.role !== CONSTANTS.CREATOR &&
                         <div className={styles.startContestBtn} onClick={this.startContests}>START CONTEST</div>}
                     </div>
                 </div>

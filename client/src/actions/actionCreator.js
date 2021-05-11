@@ -1,5 +1,9 @@
 import ACTION from './actionTypes';
 
+export const requestAuthRefresh = (refreshToken)=>({
+    type: ACTION.AUTH_REFRESH,
+    data: { refreshToken },
+})
 
 export const authActionLogin = (data) => {
     return {

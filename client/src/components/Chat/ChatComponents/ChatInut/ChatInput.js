@@ -53,8 +53,8 @@ const ChatInput = (props) => {
 
 const mapStateToProps = (state) => {
     const {interlocutor} = state.chatStore;
-    const {data} = state.auth;
-    return {interlocutor, data};
+    const {user} = state.auth;
+    return {interlocutor, user};
 };
 
 const mapDispatchToProps = (dispatch) => {

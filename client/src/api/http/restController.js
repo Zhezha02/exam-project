@@ -1,19 +1,15 @@
-import httpClient from '../interceptor';
+import httpClient from './';
 
-export const registerRequest = (data) => httpClient.post('auth/sign-up', data);
-export const loginRequest = (data) => httpClient.post('auth/sign-in', data);
-// export const getUser = () => httpClient.post('getUser');
-export const updateContest = data => httpClient.post('updateContest', data);
 export const setNewOffer = data => httpClient.post('setNewOffer', data);
 export const setOfferStatus = data => httpClient.post('setOfferStatus', data);
-export const downloadContestFile = (data) => httpClient.get('downloadFile/' + data.fileName);
-export const payMent = (data) => httpClient.post('pay', data.formData);
 export const changeMark = (data) => httpClient.post('changeMark', data);
-export const getPreviewChat = () => httpClient.post('getPreview');
-export const getDialog = (data) => httpClient.post('getChat', data);
-export const dataForContest = (data) => httpClient.post('dataForContest', data);
+
+export const payMent = (data) => httpClient.post('pay', data.formData);
 export const cashOut = (data) => httpClient.post('cashout', data);
 export const updateUser = (data) => httpClient.post('updateUser', data);
+
+export const getPreviewChat = () => httpClient.post('getPreview');
+export const getDialog = (data) => httpClient.post('getChat', data);
 export const newMessage = (data) => httpClient.post('newMessage', data);
 export const changeChatFavorite = (data) => httpClient.post('favorite', data);
 export const changeChatBlock = (data) => httpClient.post('blackList', data);
@@ -23,6 +19,10 @@ export const createCatalog = (data) => httpClient.post('createCatalog', data);
 export const deleteCatalog = (data) => httpClient.post('deleteCatalog', data);
 export const removeChatFromCatalog = (data) => httpClient.post('removeChatFromCatalog', data);
 export const changeCatalogName = (data) => httpClient.post('updateNameCatalog', data);
+
+export const updateContest = data => httpClient.post('updateContest', data);
+export const downloadContestFile = (data) => httpClient.get('downloadFile/' + data.fileName);
+export const dataForContest = (data) => httpClient.post('dataForContest', data);
 export const getCustomersContests = (data) => {
     return httpClient.post('getCustomersContests', {limit: data.limit, offset: data.offset}, {
         headers: {

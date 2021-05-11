@@ -1,10 +1,9 @@
 version: '3.8'
 services:
-
   front-react:
     build:
       context: ./client
-
+      dockerfile: Dockerfile-dev
     environment:
       NODE_ENV: development
     depends_on:
@@ -18,7 +17,7 @@ services:
   server-dev:
     build:
       context: ./server
-
+      dockerfile: Dockerfile-dev
     environment:
       NODE_ENV: development
     ports:
@@ -31,7 +30,6 @@ services:
       - ./server:/server
       - /server/node_modules
 
-
   mongo-dev:
     image: mongo:3.6
     #     environment:
@@ -40,10 +38,8 @@ services:
     ports:
       - "27017:27017"
 
-
-
   db-dev:
-    image: postgres:10
+    image: postgres:13.2-alpine
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgres

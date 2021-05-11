@@ -33,7 +33,7 @@ class CatalogListContainer extends React.Component {
 
     render() {
         const {catalogList, isShowChatsInCatalog} = this.props.chatStore;
-        const {id} = this.props.auth.data;
+        const {id} = this.props.auth.user;
         return (
             <>
                 {isShowChatsInCatalog ? <DialogList userId={id} preview={this.getDialogsPreview()}

@@ -4,7 +4,6 @@ const prepareUser = require('../utils/prepareUser');
 
 module.exports.createSession = async user => {
   const tokenPair = await JwtService.createTokenPair(user);
-  console.log(tokenPair);
   if ((await user.countRefreshTokens()) >= MAX_DEVICE_AMOUNT) {
     const [oldestToken] = await user.getRefreshTokens({
       order: [['updatedAt', 'ASC']],
