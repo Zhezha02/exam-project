@@ -6,9 +6,11 @@ import rootSaga from './sagas/rootSaga'
 
 const sagaMiddleware = createSagaMiddleware()
 
+const composeEnhancers = composeWithDevTools({ trace:true })
+
 const store = createStore(
   combineReducers,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
+  composeEnhancers(applyMiddleware(sagaMiddleware))
 )
 sagaMiddleware.run(rootSaga, store.dispatch)
 

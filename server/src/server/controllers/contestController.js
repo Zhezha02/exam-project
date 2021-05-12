@@ -30,7 +30,6 @@ module.exports.dataForContest = async (req, res, next) => {
     });
     res.send(payload);
   } catch (err) {
-    console.log(err);
     next(new ServerError('cannot get contest preferences'));
   }
 };
@@ -83,7 +82,6 @@ module.exports.getContestById = async (req, res, next) => {
     });
     res.send(contestInfo);
   } catch (err) {
-    console.log(err);
     next(new ServerError());
   }
 };
@@ -241,7 +239,6 @@ module.exports.setOfferStatus = async (req, res, next) => {
       );
       res.send(winningOffer);
     } catch (err) {
-      console.log('>>>>>>>', err);
       transaction.rollback();
       next(err);
     }
@@ -305,7 +302,6 @@ module.exports.getContests = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err);
       next(new ServerError());
     });
 };

@@ -142,7 +142,6 @@ module.exports.payment = async (req, res, next) => {
     transaction.commit();
     res.send();
   } catch (err) {
-    console.log(err);
     transaction.rollback();
     next(err);
   }

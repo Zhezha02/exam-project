@@ -103,8 +103,9 @@ class CreatorDashboard extends React.Component {
             this.props.clearContestsList();
             this.getContests(filter);
             return false;
-        } else
+        } else{
             return true;
+        }
     };
 
     getPredicateOfRequest = () => {

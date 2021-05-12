@@ -175,7 +175,6 @@ module.exports.getPreview = async (req, res, next) => {
     });
     res.send(conversations);
   } catch (err) {
-    console.log('chat error', err)
     next(err);
   }
 };
@@ -210,7 +209,6 @@ module.exports.favoriteChat = async (req, res, next) => {
 };
 
 module.exports.createCatalog = async (req, res, next) => {
-  console.log(req.body);
   const catalog = new Catalog({
     userId: req.tokenData.userId,
     catalogName: req.body.catalogName,

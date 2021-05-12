@@ -44,7 +44,6 @@ module.exports.refresh = async (req, res, next) => {
     const refreshTokenInstance = await RefreshToken.findOne({
       where: { value: refreshToken },
     });
-    console.log(refreshTokenInstance);
     
     if (!refreshTokenInstance) {
       return next(createHttpError(404, 'Token not found'));

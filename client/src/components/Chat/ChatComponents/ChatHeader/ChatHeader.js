@@ -37,7 +37,7 @@ const ChatHeader = (props) => {
             </div>
             <div className={styles.infoContainer}>
                 <div>
-                    <img src={avatar ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${avatar}`} alt='user'/>
+                    <img src={avatar ?`${CONSTANTS.publicURL}${avatar}`:CONSTANTS.ANONYM_IMAGE_PATH} alt='user'/>
                     <span>{firstName}</span>
                 </div>
                 {chatData &&

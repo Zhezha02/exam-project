@@ -31,8 +31,7 @@ class RegistrationForm extends React.Component{
   };
 
   render () {
-    const {handleSubmit, submitting, auth, authClear} = this.props;
-    const {error} = auth;
+    const {handleSubmit, submitting, auth:{error}, authClear} = this.props;
     const formInputClasses = {
       container: styles.inputContainer,
       input: styles.input,

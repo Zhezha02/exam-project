@@ -24,7 +24,7 @@ const UserInfo = (props) => {
             {isEdit ? <UpdateUserInfoForm onSubmit={updateUserData}/>
                 :
                 <div className={styles.infoContainer}>
-                    <img src={avatar ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${avatar}`} className={styles.avatar} alt='user'/>
+                    <img src={avatar ? `${CONSTANTS.publicURL}${avatar}`: CONSTANTS.ANONYM_IMAGE_PATH } className={styles.avatar} alt='user'/>
                     <div className={styles.infoContainer}>
                         <div className={styles.infoBlock}>
                             <span className={styles.label}>First Name</span>

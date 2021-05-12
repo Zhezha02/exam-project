@@ -7,13 +7,9 @@ import {clearUserStore, headerRequest} from '../../actions/actionCreator';
 
 
 class Header extends React.Component{
-   logOut = () => {
-    this.props.clearUserStore();
-    this.props.history.replace('/login');
-  };
-
-    startContests = () => {
-        this.props.history.push('/startContest');
+    logOut = () => {
+        this.props.clearUserStore();
+        this.props.history.replace('/login');
     };
     renderLoginButtons = () => {
         if (this.props.user) {
@@ -21,7 +17,7 @@ class Header extends React.Component{
                 <>
                     <div className={styles.userInfo}>
                         <img
-                            src={this.props.user.avatar ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${this.props.user.avatar}`}
+                            src={this.props.user.avatar ? `${CONSTANTS.publicURL}${this.props.user.avatar}` : CONSTANTS.ANONYM_IMAGE_PATH }
                             alt='user'/>
                         <span>{`Hi, ${this.props.user.displayName}`}</span>
                         <img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`} alt='menu'/>
@@ -141,7 +137,9 @@ class Header extends React.Component{
                             </ul>
                         </div>
                         {this.props.user && this.props.user.role !== CONSTANTS.CREATOR &&
-                        <div className={styles.startContestBtn} onClick={this.startContests}>START CONTEST</div>}
+                        <div className={styles.startContestBtn}>
+                            <Link to='/startContest'>START CONTEST</Link>
+                        </div>}
                     </div>
                 </div>
             </div>

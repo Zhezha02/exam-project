@@ -4,7 +4,6 @@ const NotFound = require('../../errors/UserNotFoundError');
 const ServerError = require('../../errors/ServerError');
 
 module.exports.updateUser = async (data, userId, transaction) => {
-  console.log(User);
   const [updatedCount, [updatedUser]] = await User.update(data, {
     where: { id: userId },
     returning: true,
