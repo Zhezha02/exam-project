@@ -1,19 +1,18 @@
-import {Schema} from 'yup';
+import { Schema } from "yup";
 
-
-const validator = schema => {
-    return  values => {
-        const errors = {};
-        try {
-             schema.validateSync(values, {abortEarly: false});
-            return errors;
-        } catch (err) {
-            err.inner.forEach(error => {
-                errors[error.path] = error.message;
-            });
-            return errors
-        }
+const validator = (schema) => {
+  return (values) => {
+    const errors = {};
+    try {
+      schema.validateSync(values, { abortEarly: false });
+      return errors;
+    } catch (err) {
+      err.inner.forEach((error) => {
+        errors[error.path] = error.message;
+      });
+      return errors;
     }
+  };
 };
 
 export default validator;

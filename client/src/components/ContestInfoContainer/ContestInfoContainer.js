@@ -55,7 +55,7 @@ const ContestsInfoContainer = (props) => {
   };
 
   const needButtons = (offerStatus) => {
-    const contestCreatorId =contestData.User.id;
+    const contestCreatorId = contestData.User.id;
     const userId = props.auth.user.id;
     const contestStatus = contestData.status;
     return (
