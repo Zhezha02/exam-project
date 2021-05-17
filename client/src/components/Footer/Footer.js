@@ -9,7 +9,7 @@ class Footer extends Component {
         return (
             <div key={item.title}>
                 <h4>{item.title}</h4>
-                {item.items.map(i => <a key={i} href="https://google.com">{i}</a>)}
+                {item.items.map(i => <a key={i} target='_blank' href="https://google.com">{i}</a>)}
             </div>
         );
     };
