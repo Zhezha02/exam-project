@@ -10,7 +10,6 @@ const initialState = {
     changeMarkError: null,
     addOfferError: null,
     setOfferStatusError: null,
-    isBrief: true,
     isShowOnFull: false,
     imagePath: null,
     isShowModal: false,
@@ -35,13 +34,6 @@ export default function (state = initialState, action) {
                 contestData: action.data.contestData,
                 error: null,
                 offers: action.data.offers
-            }
-        }
-        case ACTION.CHANGE_CONTEST_VIEW_MODE:{
-            return{
-                ...state,
-                isEditContest: false,
-                isBrief: action.data
             }
         }
         case ACTION.CHANGE_EDIT_CONTEST:{

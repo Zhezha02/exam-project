@@ -374,13 +374,6 @@ export const changeEditContest=(data)=>{
     }
 };
 
-export const changeContestViewMode=(data)=>{
-    return{
-        type: ACTION.CHANGE_CONTEST_VIEW_MODE,
-        data: data
-    }
-};
-
 export const changeShowImage=(data)=>{
     return{
         type: ACTION.CHANGE_SHOW_IMAGE,
