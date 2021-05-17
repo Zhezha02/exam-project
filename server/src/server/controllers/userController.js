@@ -1,13 +1,13 @@
 const moment = require('moment');
-const jwt = require('jsonwebtoken');
 const uuid = require('uuid/v1');
 const CONSTANTS = require('../../constants');
 const db = require('../models/index');
-const NotUniqueEmail = require('../errors/NotUniqueEmail');
 const controller = require('../../socketInit');
 const userQueries = require('./queries/userQueries');
 const bankQueries = require('./queries/bankQueries');
 const ratingQueries = require('./queries/ratingQueries');
+const {createTransaction} = require('./queries/transactionQueries')
+
 
 function getQuery (offerId, userId, mark, isFirst, transaction) {
   const getCreateQuery = () => ratingQueries.createRating({
@@ -125,11 +125,12 @@ module.exports.updateUser = async (req, res, next) => {
 
 module.exports.cashout = async (req, res, next) => {
   let transaction;
+  const {tokenData:{userId}, body:{sum}} = req
   try {
     transaction = await db.sequelize.transaction();
     const updatedUser = await userQueries.updateUser(
-      { balance: db.sequelize.literal('balance - ' + req.body.sum) },
-      req.tokenData.userId, transaction);
+      { balance: db.sequelize.literal('balance - ' + sum) },
+      userId, transaction);
     await bankQueries.updateBankBalance({
       balance: db.sequelize.literal(`CASE 
                 WHEN "cardNumber"='${req.body.number.replace(/ /g,
@@ -149,6 +150,12 @@ module.exports.cashout = async (req, res, next) => {
       }
     },
     transaction);
+
+    await createTransaction(
+      {userId, sum, operationType: CONSTANTS.TRANSACTIONS.CONSUMPTION},
+       transaction
+    )
+
     transaction.commit();
     res.send({ balance: updatedUser.balance });
   } catch (err) {

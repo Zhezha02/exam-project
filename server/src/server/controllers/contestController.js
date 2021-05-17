@@ -5,6 +5,8 @@ const userQueries = require('./queries/userQueries');
 const controller = require('../../socketInit');
 const UtilFunctions = require('../utils/functions');
 const CONSTANTS = require('../../constants');
+const {createTransaction} = require('./queries/transactionQueries')
+
 
 module.exports.dataForContest = async (req, res, next) => {
   try {
@@ -172,11 +174,21 @@ const resolveOffer = async (
     { orderId: orderId },
     transaction
   );
+  
   await userQueries.updateUser(
     { balance: db.sequelize.literal('balance + ' + finishedContest.prize) },
     creatorId,
     transaction
   );
+  
+  await createTransaction(
+    { userId: creatorId, 
+      operationType: CONSTANTS.TRANSACTIONS.INCOME, 
+      sum: finishedContest.prize
+    },
+    transaction
+  );
+
   const updatedOffers = await contestQueries.updateOfferStatus(
     {
       status: db.sequelize.literal(` CASE
