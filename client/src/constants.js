@@ -3,6 +3,10 @@ const hostName = "localhost";
 const serverPort = 3000;
 
 export default {
+  TRANSACTIONS: {
+    INCOME: "income",
+    CONSUMPTION: "consumption",
+  },
   CUSTOMER: "customer",
   CREATOR: "creator",
   CONTEST_STATUS_ACTIVE: "active",

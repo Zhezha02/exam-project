@@ -25,6 +25,7 @@ import {
   removeChatFromCatalogSaga,
   changeCatalogName,
 } from "./chatSagas";
+import {getUserTransactions, getUserTransactionsTotal} from './transactionsSaga'
 
 function* rootSaga() {
   yield takeLatest(ACTION.AUTH_REFRESH, refreshSaga);
@@ -60,6 +61,9 @@ function* rootSaga() {
     removeChatFromCatalogSaga
   );
   yield takeLatest(ACTION.CHANGE_CATALOG_NAME_REQUEST, changeCatalogName);
+  yield  takeLatest(ACTION.GET_TRANSACTIONS_REQUEST, getUserTransactions);
+  yield  takeLatest(ACTION.GET_TRANSACTIONS_TOTAL_REQUEST, getUserTransactionsTotal)
+
 }
 
 export default rootSaga;

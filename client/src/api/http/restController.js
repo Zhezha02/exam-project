@@ -8,6 +8,9 @@ export const payMent = (data) => httpClient.post("pay", data.formData);
 export const cashOut = (data) => httpClient.post("cashout", data);
 export const updateUser = (data) => httpClient.post("updateUser", data);
 
+export const getTransactionHistory = (data)=> httpClient.get('transactions/history', data)
+export const getTotalTransaction = (data)=> httpClient.get('/transactions/total', data)
+
 export const getPreviewChat = () => httpClient.post("getPreview");
 export const getDialog = (data) => httpClient.post("getChat", data);
 export const newMessage = (data) => httpClient.post("newMessage", data);

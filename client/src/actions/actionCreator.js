@@ -410,3 +410,43 @@ export const changeModalShow = (data) => {
     data: data,
   };
 };
+
+export const getTransactionsRequest = ()=>{
+  return{
+      type: ACTION.GET_TRANSACTIONS_REQUEST
+  }
+}
+
+export const getTransactionsSuccess = (transactions)=>{
+  return{
+      type: ACTION.GET_TRANSACTIONS_SUCCESS,
+      payload:{ transactions }
+  }
+}
+
+export const getTransactionsError = (error)=>{
+  return{
+      type: ACTION.GET_TRANSACTIONS_ERROR,
+      payload:{ error }
+  }
+} 
+
+export const getTransactionTotalRequest = ()=>{
+  return{
+      type: ACTION.GET_TRANSACTIONS_TOTAL_REQUEST
+  }
+}
+
+export const getTransactionsTotalSuccess = (totalSum)=>{
+  return{
+      type: ACTION.GET_TRANSACTIONS_TOTAL_SUCCESS,
+      payload:{ totalSum }
+  }
+}
+
+export const getTransactionsTotalError = (error)=>{
+  return{
+      type: ACTION.GET_TRANSACTIONS_TOTAL_ERROR,
+      payload:{ error }
+  }
+}

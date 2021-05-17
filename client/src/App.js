@@ -19,6 +19,7 @@ import browserHistory from "./browserHistory";
 import ChatContainer from "./components/Chat/ChatComponents/ChatContainer/ChatContainer";
 import { requestAuthRefresh } from "./actions/actionCreator";
 import constants from "./constants";
+import TransactionsPage from './pages/TransactionsPage/TransactionsPage'
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
@@ -109,6 +110,11 @@ function App() {
           exact
           path="/account"
           component={UserProfile}
+        />
+        <PrivateRoute
+          roles={["creator"]}
+          path="/transactions"
+          component={TransactionsPage}
         />
         <PrivateRoute component={NotFound} />
       </Switch>
