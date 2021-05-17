@@ -48,6 +48,11 @@ module.exports = {
     PENDING: 'pending'
   },
 
+  TRANSACTIONS:{
+    INCOME: 'income',
+    CONSUMPTION: 'consumption'
+  },
+  
   FILES_PATH: 'public/',
   CONTESTS_DEFAULT_DIR: 'public/contestFiles/',
 
