@@ -47,7 +47,8 @@ export function * refreshSaga (action) {
     yield put({ type: ACTION.AUTH_ACTION_ERROR, error: e.response })
   }
 }
+
 export function * logoutSaga (action) {
   yield Api.auth.logout()
-  put({type: ACTION.CLEAR_STORE})
+  yield put({ type: ACTION.CLEAR_STORE })
 }

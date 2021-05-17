@@ -1,0 +1,30 @@
+function checkNumber (n) {
+  return !(Number(n + 1) > Number.MAX_SAFE_INTEGER);
+}
+
+function sum (a, b) {
+  if (!checkNumber(a) || !checkNumber(b)) {
+    return Infinity;
+  }
+  return Number(a) + Number(b);
+}
+
+describe('test sum func', () => {
+  test('add 10 to 20 to expect 30', () => {
+    expect(sum(10, 20)).toBe(30);
+  });
+
+  test('add 10:string to 20:string to expect 30:string', () => {
+    expect(sum('10', '20')).toBe(30);
+  });
+
+  test('add MAX_SAFE_INT to MAX_SAFE_INT to expect Infinity', () => {
+    expect(sum(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)).toBe(
+      Infinity
+    );
+  });
+
+  test('add 0.1 to 0.2 to expect 0.3', () => {
+    expect(sum(0.1, 0.2)).toBeCloseTo(0.3);
+  });
+});

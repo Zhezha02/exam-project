@@ -39,6 +39,10 @@ module.exports.addMessage = async (req, res, next) => {
       blackList: newConversation.blackList,
       favoriteList: newConversation.favoriteList
     };
+    const sender = await db.User.findByPk(req.tokenData.userId,{
+      attributes: ['firstName','lastName','id'],
+      raw: true,
+    })
     controller.getChatController().emitNewMessage(interlocutorId, {
       message: message,
       preview: {
@@ -59,6 +63,11 @@ module.exports.addMessage = async (req, res, next) => {
         }
       }
     });
+    controller.getNotificationController().emitNewMessage({
+      interlocutorId, 
+      sender, 
+      dialogId: message.conversation
+    })
     res.send({
       message,
       preview: Object.assign(preview, { interlocutor: req.body.interlocutor })

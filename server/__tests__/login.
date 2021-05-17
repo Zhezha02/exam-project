@@ -1,0 +1,89 @@
+const request = require('supertest');
+const yup = require('yup');
+const app = require('../src/app')();
+const appRequest = request(app);
+const db = require('../src/server/models');
+const { ROLES } = require('../src/constants');
+
+const loginResponseSuccessSchema = yup.object({
+  tokenPair: yup.object({
+    access: yup.string().required(),
+    refresh: yup.string().required(),
+  }),
+  user: yup.object({
+    id: yup.number().required(),
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    email: yup
+      .string()
+      .email()
+      .required(),
+    displayName: yup.string().required(),
+    role: yup
+      .string()
+      .oneOf(Object.values(ROLES))
+      .required(),
+    balance: yup.string(),
+    avatar: yup.string().nullable(),
+    rating: yup.number(),
+  }),
+});
+const getUserData = () => ({
+  email: `buyer${Date.now()}@mail.com`,
+  password: 'Test1234',
+  firstName: 'Nnn',
+  lastName: 'segseg',
+  displayName: 'display',
+  role: 'customer',
+});
+const user = getUserData();
+
+beforeAll(async () => {
+  await db.sequelize.sync({ force: true });
+  return db.User.create(user);
+});
+afterAll(() => db.sequelize.close());
+
+describe('Auth login tests', () => {
+  test('user must login successfully', async done => {
+    const response = await appRequest.post('/api/auth/sign-in').send({
+      email: user.email,
+      password: user.password,
+    });
+    expect(response.statusCode).toBe(201);
+    expect(
+      loginResponseSuccessSchema.isValidSync(response.body.data)
+    ).toBeTruthy();
+    done();
+  });
+
+  test('user login with empty body expect status 400', async done => {
+    const response = await appRequest.post('/api/auth/sign-in', {});
+    expect(response.statusCode).toBe(400);
+    done();
+  });
+
+  test('user login with invalid body expect status 400', async done => {
+    const response = await appRequest.post('/api/auth/sign-in', {
+      email: 'lol_kek',
+      test: 1,
+    });
+    expect(response.statusCode).toBe(400);
+    done();
+  });
+
+  test('user login with incorrect password expect status 403', async done => {
+    const response = await appRequest.post('/api/auth/sign-in').send({
+      email: user.email,
+      password: 'invaliDpass',
+    });
+    expect(response.statusCode).toBe(401);
+    done();
+  });
+});
+
+describe('Sign up', () => {
+    test()
+});
+
+

@@ -29,6 +29,9 @@ module.exports.checkAccessToken = async (req, res, next) => {
     }
     next(createHttpError(401, 'Need token'));
   } catch (error) {
+    if(error instanceof SyntaxError){
+      next(createHttpError(401, 'Invalid token'))
+    }
     next(error);
   }
 };

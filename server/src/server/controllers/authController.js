@@ -14,10 +14,11 @@ module.exports.signIn = async (req, res, next) => {
 
     if (user && (await user.comparePassword(password))) {
       const data = await AuthService.createSession(user);
-      return res.send({ data });
+      return res.status(201).send({ data });
     }
     next(createHttpError(401, 'Invalid credentials'));
   } catch (error) {
+    console.log('catched ,', error);
     next(error);
   }
 };
@@ -28,7 +29,7 @@ module.exports.signUp = async (req, res, next) => {
     const user = await User.create(body);
     if (user) {
       const data = await AuthService.createSession(user);
-      return res.send({ data });
+      return res.status(201).send({ data });
     }
   } catch (error) {
     next(error);
@@ -44,12 +45,12 @@ module.exports.refresh = async (req, res, next) => {
     const refreshTokenInstance = await RefreshToken.findOne({
       where: { value: refreshToken },
     });
-    
+
     if (!refreshTokenInstance) {
       return next(createHttpError(404, 'Token not found'));
     }
     const data = await AuthService.refreshSession(refreshTokenInstance);
-    res.send({ data });
+    res.status(201).send({ data });
   } catch (error) {
     next(error);
   }

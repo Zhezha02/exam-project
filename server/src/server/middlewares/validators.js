@@ -12,6 +12,7 @@ module.exports.validateRegistrationData = async (req, res, next) => {
 };
 
 module.exports.validateLogin = async (req, res, next) => {
+  console.log('>>>>>>>>>>>>>>>>>>>>',req.body)
   const validationResult = await schems.loginSchem.isValid(req.body);
   if (validationResult) {
     next();

@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const {
   env: {
     SQUADHELP_BANK_NUMBER,
@@ -55,6 +57,7 @@ module.exports = {
   SOCKET_SUBSCRIBE: 'subscribe',
   SOCKET_UNSUBSCRIBE: 'unsubscribe',
 
+  NOTIFICATION_NEW_MESSAGE: 'notificationNewMessage',
   NOTIFICATION_ENTRY_CREATED: 'onEntryCreated',
   NOTIFICATION_CHANGE_MARK: 'changeMark',
   NOTIFICATION_CHANGE_OFFER_STATUS: 'changeOfferStatus',

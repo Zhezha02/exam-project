@@ -9,6 +9,16 @@
       "database": "todo-dev",
       "username": "postgres",
       "password": "password"
+    },
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "t1",
+      "database": "sqh_test",
+      "username": "postgres",
+      "password": "postgres"
     }
   ]
 }

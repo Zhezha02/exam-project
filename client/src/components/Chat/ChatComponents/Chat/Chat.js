@@ -5,7 +5,7 @@ import styles from './Chat.module.sass';
 import Dialog from '../../DialogComponents/Dialog/Dialog';
 import classNames from 'classnames';
 import {changeChatShow, setPreviewChatMode, changeShowModeCatalog,clearChatError,getPreviewChat} from "../../../../actions/actionCreator";
-import {chatController} from '../../../../api/ws/socketController';
+import {chatController, controller} from '../../../../api/ws/socketController';
 import CONSTANTS from "../../../../constants";
 import CatalogListContainer from '../../CatalogComponents/CatalogListContainer/CatalogListContainer';
 import CatalogCreation from '../../CatalogComponents/CatalogCreation/CatalogCreation';
@@ -15,11 +15,13 @@ import ChatError from '../../../ChatError/ChatError';
 
 class Chat extends React.Component {
     componentDidMount() {
+        controller.subscribe(this.props.auth.user.id)
         chatController.subscribeChat(this.props.auth.user.id);
         this.props.getPreviewChat();
     }
 
     componentWillUnmount() {
+        controller.unsubsctibe(this.props.auth.user.id)
         chatController.unsubscribeChat(this.props.auth.user.id);
     }
 
@@ -54,7 +56,7 @@ class Chat extends React.Component {
         const {id} = this.props.auth.user;
         const {changeShow,getPreviewChat} = this.props;
         return (
-            <div className={classNames(styles.chatContainer, {[styles.showChat]: isShow})}>
+            <div ref={this.props.ref} className={classNames(styles.chatContainer, {[styles.showChat]: isShow})}>
                 {error && <ChatError getData={getPreviewChat}/>}
                 {isShowCatalogCreation && <CatalogCreation/>}
                 {isExpanded ? <Dialog userId={id}/> : this.renderDialogList()}

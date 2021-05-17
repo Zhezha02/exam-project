@@ -1,9 +1,7 @@
 const express = require('express');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
-const hashPass = require('../middlewares/hashPassMiddle');
 const userController = require('../controllers/userController');
 const contestController = require('../controllers/contestController');
-const checkToken = require('../middlewares/checkToken');
 const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
 const upload = require('../utils/fileUpload');
@@ -12,17 +10,6 @@ const { checkAccessToken } = require('../middlewares/tokenMw');
 const router = express.Router();
 
 router.use('/auth', authRouter);
-
-/* router.post(
-  '/registration',
-  validators.validateRegistrationData,
-  hashPass,
-  userController.registration
-);
-
-router.post('/login', validators.validateLogin, userController.login);
-*/
-// router.post('/getUser', checkToken.checkAuth); 
 
 router.use(checkAccessToken);
 

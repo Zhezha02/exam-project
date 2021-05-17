@@ -12,7 +12,7 @@ const initialState = {
     messages: [],
     error: null,
     isExpanded: false,
-    interlocutor: [],
+    interlocutor: null,
     messagesPreview: [],
     isShow: false,
     chatMode: CONSTANTS.NORMAL_PREVIEW_CHAT_MODE,
@@ -67,7 +67,9 @@ export default function (state = initialState, action) {
         case ACTION.BACK_TO_DIALOG_LIST: {
             return {
                 ...state,
-                isExpanded: false
+                isExpanded: false,
+                interlocutor: null,
+                chatData: null,
             }
         }
         case ACTION.GO_TO_EXPANDED_DIALOG: {

@@ -1,7 +1,6 @@
 import ACTION from '../actions/actionTypes';
 import CONTANTS from '../constants';
 
-
 const initialState = {
     isFetching: true,
     contestData: null,

@@ -7,7 +7,7 @@
 started_at=$(date +"%s")
 
 echo "-----> Provisioning containers"
-docker-compose --file docker-compose-dev.yaml up --build
+docker-compose --file docker-compose-dev.yaml up
 echo "<----- Closing containers"
 
 ended_at=$(date +"%s")

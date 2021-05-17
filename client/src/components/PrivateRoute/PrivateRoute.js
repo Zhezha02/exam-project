@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Spinner from '../Spinner/Spinner';
 
 const PrivateRoute = ({ roles, ...rest }) => {
-  const { user, isFetching, error } = useSelector(state => state.auth)
+  const { user, isFetching } = useSelector(state => state.auth)
 
   if (isFetching) {
     return <Spinner />

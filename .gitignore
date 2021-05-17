@@ -9,3 +9,8 @@
 .server/public/images
 **server/public/*
 *server/public/*
+
+**/coverage/
+
+**/sandbox*
+.vscode/
