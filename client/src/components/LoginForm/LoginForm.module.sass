@@ -1,3 +1,5 @@
+@import '../../common/styles/templates' 
+
 .loginForm
   width: 600px
   display: flex
@@ -30,34 +32,25 @@
 
   .inputContainer
     display: flex
+    position: relative
     flex-direction: column
     justify-content: center
     align-self: stretch
     margin-right: 20px
     margin-left: 20px
+    margin-bottom: 15px
 
     .fieldWarning
-      font-size: 15px
-      display: flex
-      flex-direction: row
-      justify-content: center
-      align-items: center
-      color: white
-      border: 1px solid #b72522
-      margin-bottom: 15px
-      padding-bottom: 5px
-      padding-top: 5px
-      text-align: center
+      @extend %errorBubble
 
     .input
       background-color: white
-      border: none
+      border: 2px solid transparent
       border-radius: 4px
       color: #9ca8b7
       font-size: 18px
-      padding: 23px 20px 23px 20px
+      padding: 23px 20px
       outline: none
-      margin-bottom: 15px
       flex: 1
       @media(max-width: 1400px)
         align-self: normal
